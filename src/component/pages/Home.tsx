@@ -80,7 +80,7 @@ const Home = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 sm:px-8 sm:py-4 bg-gray-800 text-white font-medium sm:font-semibold rounded-xl shadow-lg transition"
+                className="px-6 py-3 sm:px-8 w-full sm:py-4 bg-gray-800 text-white font-medium sm:font-semibold rounded-xl shadow-lg transition"
               >
                 Start Summarizing Now
               </motion.button>
