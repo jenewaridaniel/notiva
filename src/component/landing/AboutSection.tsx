@@ -13,20 +13,20 @@ const AboutSection = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-6">
               Why I Built <span className="text-blue-600">Notiva</span>
             </h2>
 
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-md text-gray-600 mb-6">
               As a fourth-year student at the Federal University of Technology Owerri, exam season can be overwhelming. I often find myself buried under hundreds of pages of PDFs — lecture notes and textbooks — all in a race against time.
             </p>
 
-            <p className="text-lg text-gray-600 mb-6">
+            <p className=" text-md text-gray-600 mb-6">
               One day I thought, “There has to be a smarter way to study.” That idea became{" "}
               <span className="font-semibold text-gray-800">Notiva</span> — a tool I built to help summarize and understand large study materials faster.
             </p>
 
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-md text-gray-600 mb-6">
               It started as a personal project to help me survive finals. No AI. No noise. Just a clean, focused way to break down what matters most — so I could spend less time skimming and more time understanding.
             </p>
 
