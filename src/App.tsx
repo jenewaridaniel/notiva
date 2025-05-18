@@ -1,10 +1,22 @@
+import Upload from "./component/app/Upload"
 import Home from "./component/pages/Home"
+import { createBrowserRouter,RouterProvider } from "react-router-dom"
 
 
 const App = () => {
+     const ROUTER ={
+      LANDING:'/',
+      UPLOAD:'/upload'
+     }
+
+     const router = createBrowserRouter([
+      { path: ROUTER.LANDING, element: <Home /> },
+      { path: ROUTER.UPLOAD, element: <Upload /> },
+    ]);
+  
   return (
     <div>
-       <Home/>
+       <RouterProvider router={router}/>
     </div>
   )
 }
