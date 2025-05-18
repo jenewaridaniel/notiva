@@ -2,10 +2,45 @@ import { motion } from "framer-motion";
 import study from "../../assets/study.svg";
 import HeroSection from "../landing/HeroSection";
 import AboutSection from "../landing/AboutSection";
+import Header from "../common/Header";
+import RotatingText from "../common/RotatingText";
+import student from "../../assets/student.svg";
+import Footer from "../common/Footer";
+
 
 const Home = () => {
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.6, ease: "backOut" },
+    },
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+      <Header />
+
       {/* Hero Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-28">
         <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-16 lg:gap-24">
@@ -17,7 +52,7 @@ const Home = () => {
             className="w-full lg:w-1/2"
           >
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
-              Built for students who {" "}
+              Built for students who{" "}
               <motion.span
                 className="text-blue-600"
                 animate={{
@@ -29,7 +64,7 @@ const Home = () => {
                   repeatType: "reverse",
                 }}
               >
-              hate wasting time
+                hate wasting time
               </motion.span>{" "}
               on textbooks.
             </h1>
@@ -91,7 +126,7 @@ const Home = () => {
               <img
                 src={study}
                 alt="Student studying"
-                className="rounded-3xl  w-full max-w-[550px] mx-auto"
+                className="rounded-3xl w-full max-w-[550px] mx-auto"
               />
               <motion.div
                 animate={{
@@ -117,12 +152,60 @@ const Home = () => {
         </div>
       </section>
 
-      <div>
-        <HeroSection/>
-      </div>
+      {/* Additional Sections */}
+      <HeroSection />
+      <AboutSection />
+
+      {/* Smart Reading Section */}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className="max-w-4xl mx-auto px-4 py-12"
+      >
+        <motion.div
+          variants={imageVariants}
+          className="flex justify-center mb-8"
+        >
+          <motion.img
+            src={student}
+            alt="Student reading"
+            className="w-full max-w-md md:max-w-lg rounded-xl shadow-lg"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          />
+        </motion.div>
+
+        <motion.div variants={textVariants} className="flex justify-center">
+          <motion.p
+            className="text-center text-xl md:text-2xl font-medium text-gray-800 max-w-md md:max-w-lg leading-relaxed"
+            whileHover={{ scale: 1.01 }}
+          >
+            <span className="text-blue-600 font-bold">
+              Read Smart, Not Hard
+            </span>{" "}
+            —{" "}
+            <motion.span
+              className="inline-block"
+              animate={{
+                color: ["#4b5563", "#1e40af", "#4b5563"],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            >
+              Focus on What Matters.
+            </motion.span>
+          </motion.p>
+        </motion.div>
+      </motion.div>
+
+      <RotatingText />
 
       <div>
-        <AboutSection/>
+        <Footer />
       </div>
     </div>
   );
