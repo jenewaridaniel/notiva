@@ -34,7 +34,7 @@ const Home = () => {
               on textbooks.
             </h1>
 
-            <p className="text-xs sm:text-xl text-gray-700 mb-8">
+            <p className="text-md sm:text-xl text-gray-700 mb-8">
               Smart summaries that condense 100-page textbooks into quick,
               2-minute study guides — helping you study faster and smarter.
             </p>
