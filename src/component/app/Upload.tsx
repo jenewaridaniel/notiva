@@ -135,8 +135,7 @@ const Upload = () => {
           </div>
         </div>
       </div>
-
-        </div>
+    </div>
   );
 };
 
