@@ -8,6 +8,7 @@ const Upload = () => {
   const [fileSize, setFileSize] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
@@ -52,6 +53,7 @@ const Upload = () => {
 
     setFileName(file.name);
     setFileSize((file.size / (1024 * 1024)).toFixed(2) + " MB");
+    setUploadedFile(file);
 
     // Simulate processing
     setIsProcessing(true);
@@ -72,6 +74,23 @@ const Upload = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
+  };
+
+  const handleDownload = () => {
+    if (!uploadedFile) return;
+    
+    // In a real app, you would send the file to your backend for summarization
+    // and then download the summarized version. For this example, we'll just
+    // download the original file.
+    
+    const url = URL.createObjectURL(uploadedFile);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `summary_${summaryLevel}%_${uploadedFile.name}`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -132,7 +151,7 @@ const Upload = () => {
 
                 {/* Summary Level Selector */}
                 <div className="flex flex-wrap justify-center gap-2 mt-4">
-                  {[30, 50, 70].map((level) => (
+                  {[20, 30, 50, 70].map((level) => (
                     <button
                       key={level}
                       onClick={(e) => {
@@ -231,6 +250,7 @@ const Upload = () => {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 mt-6">
               <button
+                onClick={handleDownload}
                 disabled={progress < 100}
                 className={`px-4 py-2.5 md:px-6 md:py-3 font-medium rounded-lg md:rounded-xl transition-all shadow-md flex-1 flex items-center justify-center gap-2 text-sm md:text-base ${
                   progress < 100
