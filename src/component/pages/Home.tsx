@@ -6,7 +6,8 @@ import Header from "../common/Header";
 import RotatingText from "../common/RotatingText";
 import student from "../../assets/student.svg";
 import Footer from "../common/Footer";
-
+import { useState, useEffect } from "react";
+import { FaArrowUp } from "react-icons/fa";
 
 const Home = () => {
   const textVariants = {
@@ -37,8 +38,31 @@ const Home = () => {
     },
   };
 
+  // Back to top button logic
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white relative">
       <Header />
 
       {/* Hero Section */}
@@ -76,14 +100,13 @@ const Home = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
               <a href="/upload">
-
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 sm:px-8 w-full sm:py-4 bg-gray-800 text-white font-medium sm:font-semibold rounded-xl shadow-lg transition"
-              >
-                Start Summarizing Now
-              </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-3 sm:px-8 w-full sm:py-4 bg-gray-800 text-white font-medium sm:font-semibold rounded-xl shadow-lg transition"
+                >
+                  Start Summarizing Now
+                </motion.button>
               </a>
 
               <motion.button
@@ -210,6 +233,22 @@ const Home = () => {
       <div>
         <Footer />
       </div>
+
+      {/* Back to Top Button */}
+      {isVisible && (
+        <motion.button
+          onClick={scrollToTop}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-200 z-50"
+          aria-label="Back to top"
+        >
+          <FaArrowUp className="w-5 h-5" />
+        </motion.button>
+      )}
     </div>
   );
 };
