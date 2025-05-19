@@ -147,6 +147,7 @@ const HeroSection: React.FC = () => {
           viewport={{ once: true }}
           className="mt-16"
         >
+          <a href="/upload">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -154,6 +155,7 @@ const HeroSection: React.FC = () => {
           >
             Try It Now - Free
           </motion.button>
+          </a>
         </motion.div>
       </div>
     </section>
