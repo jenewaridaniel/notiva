@@ -1,8 +1,8 @@
 import uploadIcon from "../../assets/upload.png";
-import supabase from '../../config/supabase'
+// import supabase from '../../config/supabase'
 
 const Upload = () => {
-  console.log(supabase)
+  // console.log(supabase)
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-4 md:p-8">
       {/* Header */}
