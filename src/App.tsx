@@ -1,4 +1,4 @@
-import Upload from "./component/app/Upload"
+import Upload from "./component/feat/Upload"
 import Home from "./component/pages/Home"
 import { createBrowserRouter,RouterProvider } from "react-router-dom"
 
